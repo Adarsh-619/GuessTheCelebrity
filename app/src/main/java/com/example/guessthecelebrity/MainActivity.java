@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void newQuestion(){
         try{
-
             Random rand = new Random();
             chosenCeleb = rand.nextInt(celebUrls.size());
             ImageDownloader imageTask = new ImageDownloader();
@@ -68,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
                     answers[i] = celebNames.get(incorrectAnswerLocation);
                 }
             }
-
             option1.setText(answers[0]);
             option2.setText(answers[1]);
             option3.setText(answers[2]);
@@ -140,31 +138,32 @@ public class MainActivity extends AppCompatActivity {
         DownloadTask task = new DownloadTask();
         String result = null;
         try{
-            result = task.execute("https://web.archive.org/web/20190119082828/www.posh24.se/kandisar").get();
-
-            String[] splitResult = result.split("<div class=\"listedArticles\">");
-
-            Pattern p = Pattern.compile("img src=\"(.*?)\"");
-            Matcher m = p.matcher(splitResult[0]);
-            while(m.find()){
-                // System.out.println(m.group(1));
-                celebUrls.add(m.group(1));
-            }
-
-            p = Pattern.compile("alt=\"(.*?)\"");
-            m = p.matcher(splitResult[0]);
+            result = task.execute("https://www.imdb.com/list/ls052283250/").get();
+            String[] splitResult = result.split("class=\"lister-list\"");
+            // System.out.println(splitResult[1]);
+            Pattern p = Pattern.compile("img alt=\"(.*?)\"");
+            Matcher m = p.matcher(splitResult[1]);
             while(m.find()){
                 // System.out.println(m.group(1));
                 celebNames.add(m.group(1));
             }
 
-            celebNames = new ArrayList(celebNames.subList(4, celebNames.size()));
-            celebUrls = new ArrayList(celebUrls.subList(4, celebUrls.size()));
-            // System.out.println(celebNames);
-            // System.out.println(celebUrls);
-            newQuestion();
+            p = Pattern.compile("height=\"209\"\nsrc=\"(.*?)\"");
+            m = p.matcher(splitResult[1]);
+            while(m.find()){
+                // System.out.println(m.group(1));
+                celebUrls.add(m.group(1));
+            }
 
-            // Log.i("Contents of URL", result);
+            /*
+            // Logging out the information
+             celebNames = new ArrayList(celebNames.subList(4, celebNames.size()));
+             celebUrls = new ArrayList(celebUrls.subList(4, celebUrls.size()));
+             System.out.println(celebNames);
+             System.out.println(celebUrls);
+             Log.i("Contents of URL", result);
+             */
+             newQuestion();
         }catch(Exception e){
             e.printStackTrace();
         }
