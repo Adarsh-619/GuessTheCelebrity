@@ -5,5 +5,5 @@
 2. The URL used is [100 Most Popular celebrities in the World](https://www.imdb.com/list/ls052283250/)
 
 ## *Working Screenshots*
-[Alt](/assets/Screenshot1.png "Screenshot-1")
-[Alt](/assets/Screenshot2.png "Screenshot-2")
+![Alt](/assets/Screenshot-1.png "Screenshot-1")
+![Alt](/assets/Screenshot-2.png "Screenshot-2")
