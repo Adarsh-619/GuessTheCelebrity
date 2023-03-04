@@ -7,3 +7,9 @@
 ## *Working Screenshots*
 ![Alt](/assets/Screenshot-1.png "Screenshot-1")
 ![Alt](/assets/Screenshot-2.png "Screenshot-2")
+
+## Steps to use the piece of software:
+1. Clone the Repo
+2. Open the Project in your Android Studio
+3. Check if any deprecation is there, will be updating the app but if in case anything goes out of date.
+4. Run the app and you are good to go.
